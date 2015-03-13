@@ -13,11 +13,15 @@ import android.os.Bundle;
 import android.support.v7.graphics.Palette;
 import android.transition.Transition;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -28,6 +32,7 @@ public class DetailActivity extends Activity {
 
     public static final String EXTRA_PARAM_ID = "place_id";
 
+    private ListView mList;
     private ImageView mImageView;
     private TextView mTitle;
     private LinearLayout mTitleHolder;
@@ -42,10 +47,20 @@ public class DetailActivity extends Activity {
 
         mPlace = PlaceData.placeList().get(getIntent().getIntExtra(EXTRA_PARAM_ID,0));
 
+        mList = (ListView) findViewById(R.id.list);
+/*        LayoutInflater inflater = getLayoutInflater();
+        ViewGroup header = (ViewGroup)inflater.inflate(R.layout.view_header, mList, false);
+        mList.addHeaderView(header, null, false);*/
+
         mImageView = (ImageView) findViewById(R.id.imageView);
         mTitle = (TextView) findViewById(R.id.textView);
         mTitleHolder = (LinearLayout) findViewById(R.id.llTextViewHolder);
         mAddButton = (ImageButton) findViewById(R.id.btn_add);
+
+        ArrayAdapter adapter = new ArrayAdapter(this,
+                R.layout.row_todo, PlaceData.placeNameArray);
+
+        mList.setAdapter(adapter);
 
         loadPlace();
 

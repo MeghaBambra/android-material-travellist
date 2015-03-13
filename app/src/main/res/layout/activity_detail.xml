@@ -40,7 +40,6 @@
                 android:paddingLeft="10dp"/>
         </LinearLayout>
 
-
         <ImageButton
             android:id="@+id/btn_add"
             android:layout_width="@dimen/floating_button_size"
@@ -54,5 +53,12 @@
             android:elevation="@dimen/button_elevation"
             android:stateListAnimator="@anim/raise" />
     </FrameLayout>
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:requiresFadingEdge="vertical">
+    </ListView>
 
 </LinearLayout>

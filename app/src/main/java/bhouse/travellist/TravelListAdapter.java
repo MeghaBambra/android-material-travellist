@@ -38,9 +38,9 @@ public class TravelListAdapter extends RecyclerView.Adapter<TravelListAdapter.Vi
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         final Place place = new PlaceData().placeList().get(position);
         holder.placeName.setText(place.name);
-        //holder.placeImage.setImageResource(place.getImageResourceId(mContext));
         Picasso.with(mContext).load(place.getImageResourceId(mContext)).into(holder.placeImage);
 
+        //This checks if layout is staggered grid (as opposed to LinearLayout) and sets certain views to full span based on a condition
         final ViewGroup.LayoutParams lp = holder.itemView.getLayoutParams();
         if (lp instanceof StaggeredGridLayoutManager.LayoutParams) {
             StaggeredGridLayoutManager.LayoutParams sglp = (StaggeredGridLayoutManager.LayoutParams) lp;

@@ -2,7 +2,6 @@ package bhouse.travellist;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,14 +9,14 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.ListView;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 
 
 public class MainActivity extends Activity {
 
-    //private ListView mListView;
     private RecyclerView mRecyclerView;
-    private LinearLayoutManager mLayoutManager;
     private StaggeredGridLayoutManager mStaggeredLayoutManager;
     private boolean isListView;
     private Menu menu;
@@ -29,7 +28,6 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         // use a linear layout manager
-        //mLayoutManager = new LinearLayoutManager(this);
         mStaggeredLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         mStaggeredLayoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS);
         mStaggeredLayoutManager.supportsPredictiveItemAnimations();
@@ -37,7 +35,7 @@ public class MainActivity extends Activity {
         mRecyclerView = (RecyclerView) findViewById(R.id.list);
         mRecyclerView.setLayoutManager(mStaggeredLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerView.setHasFixedSize(false);
+        mRecyclerView.setHasFixedSize(true); //Data size is fixed - improves performance
         mAdapter = new TravelListAdapter(this);
         mRecyclerView.setAdapter(mAdapter);
 
@@ -55,35 +53,37 @@ public class MainActivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         if (id == R.id.action_toggle) {
             toggle();
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
     private void toggle() {
         MenuItem item = menu.findItem(R.id.action_toggle);
         if (isListView) {
+            gridLayoutChangeAnimation(1,0);
             mStaggeredLayoutManager.setSpanCount(2);
-            //mRecyclerView.setLayoutManager(mStaggeredLayoutManager);
             item.setIcon(R.drawable.ic_action_list);
             isListView = false;
+            gridLayoutChangeAnimation(0,1);
         } else {
+            gridLayoutChangeAnimation(1,0);
             mStaggeredLayoutManager.setSpanCount(1);
-            //mRecyclerView.setLayoutManager(mLayoutManager);
             item.setIcon(R.drawable.ic_action_grid);
             isListView = true;
+            gridLayoutChangeAnimation(0,1);
         }
-        mAdapter.notifyItemMoved(0,0);
-        mStaggeredLayoutManager.invalidateSpanAssignments();
-        //mStaggeredLayoutManager.onLayoutChildren(mRecyclerView, mRecyclerView.SCROLL_STATE_IDLE);
+    }
+
+    private void gridLayoutChangeAnimation(int startAlpha, int endAlpha) {
+        Animation anim = new AlphaAnimation(startAlpha, endAlpha);
+        anim.setInterpolator(new AccelerateDecelerateInterpolator());
+        if (startAlpha==0) { anim.setStartOffset(100); }
+        anim.setDuration(300);
+        mRecyclerView.setAnimation(anim);
     }
 
 }
