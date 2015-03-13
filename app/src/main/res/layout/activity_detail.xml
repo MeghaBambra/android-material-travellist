@@ -6,42 +6,53 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:transitionName="tImage"
             android:scaleType="centerCrop"/>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#15000000">
-
         </LinearLayout>
-
     </FrameLayout>
 
-
-    <LinearLayout
-        android:id="@+id/llTextViewHolder"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@color/primary_dark">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:transitionName="tName"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@android:color/white"
-            android:text="Medium Text"
-            android:id="@+id/textView"
-            android:layout_gravity="center_vertical"
-            android:paddingLeft="10dp"/>
+        <LinearLayout
+            android:id="@+id/llTextViewHolder"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/primary_dark">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:transitionName="tName"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white"
+                android:text="Medium Text"
+                android:id="@+id/textView"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="10dp"/>
+        </LinearLayout>
 
-    </LinearLayout>
 
+        <ImageButton
+            android:id="@+id/btn_add"
+            android:layout_width="@dimen/floating_button_size"
+            android:layout_height="@dimen/floating_button_size"
+            android:layout_gravity="end"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="30dp"
+            android:alpha="0.0"
+            android:background="@drawable/btn_background"
+            android:src="@drawable/ic_plus_white"
+            android:elevation="@dimen/button_elevation"
+            android:stateListAnimator="@anim/raise" />
+    </FrameLayout>
 
 </LinearLayout>

@@ -11,9 +11,9 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="15dp"
-        card_view:cardCornerRadius="4dp"
-        card_view:cardElevation="1dp">
+        android:layout_margin="8dp"
+        card_view:cardCornerRadius="@dimen/card_corner_radius"
+        card_view:cardElevation="@dimen/card_elevation">
 
         <FrameLayout
             android:layout_width="match_parent"

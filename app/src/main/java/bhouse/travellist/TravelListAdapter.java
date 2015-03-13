@@ -7,6 +7,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,21 +41,12 @@ public class TravelListAdapter extends RecyclerView.Adapter<TravelListAdapter.Vi
         //holder.placeImage.setImageResource(place.getImageResourceId(mContext));
         Picasso.with(mContext).load(place.getImageResourceId(mContext)).into(holder.placeImage);
 
-        holder.placeHolder.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, DetailActivity.class);
-                intent.putExtra(DetailActivity.EXTRA_PARAM_ID, position);
-
-                ActivityOptionsCompat activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                        (Activity)mContext,
-                        new Pair<View, String>(holder.placeImage,"tImage"),
-                        new Pair<View, String>(holder.placeName,"tName"));
-                // Now we can start the Activity, providing the activity options as a bundle
-                ActivityCompat.startActivity((Activity)mContext, intent, activityOptions.toBundle());
-
-            }
-        });
+        final ViewGroup.LayoutParams lp = holder.itemView.getLayoutParams();
+        if (lp instanceof StaggeredGridLayoutManager.LayoutParams) {
+            StaggeredGridLayoutManager.LayoutParams sglp = (StaggeredGridLayoutManager.LayoutParams) lp;
+            sglp.setFullSpan(place.isFav);
+            holder.itemView.setLayoutParams(sglp);
+        }
     }
 
     @Override
@@ -62,7 +54,7 @@ public class TravelListAdapter extends RecyclerView.Adapter<TravelListAdapter.Vi
         return new PlaceData().placeList().size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public LinearLayout placeHolder;
         public TextView placeName;
@@ -76,7 +68,20 @@ public class TravelListAdapter extends RecyclerView.Adapter<TravelListAdapter.Vi
             placeHolder = (LinearLayout) itemView.findViewById(R.id.mainHolder);
             placeName = (TextView) itemView.findViewById(R.id.placeName);
             placeImage = (ImageView) itemView.findViewById(R.id.placeImage);
+
+            placeHolder.setOnClickListener(this);
         }
 
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(context, DetailActivity.class);
+            intent.putExtra(DetailActivity.EXTRA_PARAM_ID, getPosition());
+
+            ActivityOptionsCompat activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                    (Activity)context,
+                    new Pair<View, String>(placeImage,"tImage"),
+                    new Pair<View, String>(placeName,"tName"));
+            ActivityCompat.startActivity((Activity)context, intent, activityOptions.toBundle());
+        }
     }
 }
