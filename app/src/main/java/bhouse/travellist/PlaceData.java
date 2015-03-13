@@ -13,18 +13,20 @@ public class PlaceData {
     public static ArrayList<Place> placeList() {
         ArrayList<Place> list = new ArrayList<>();
 
-        for (String name: placeNameArray) {
+        for (int i=0; i<placeNameArray.length; i++) {
             Place place = new Place();
-            place.name = name;
-            place.imageName = name.replaceAll("\\s+","").toLowerCase();
-            place.todo = new ArrayList<>();
-
+            place.name = placeNameArray[i];
+            place.imageName = placeNameArray[i].replaceAll("\\s+","").toLowerCase();
+            if (i==2 || i==5) {
+                place.isFav = true;
+            }
             list.add(place);
         }
+
         return(list);
     }
 
-    public void addToDo(String _placeId, Todo _todo) {
+/*    public void addToDo(String _placeId, Todo _todo) {
         Place item = getItem(_placeId);
         item.todo.add(_todo);
     }
@@ -37,7 +39,7 @@ public class PlaceData {
                 item.todo.remove(_todo);
             }
         }
-    }
+    }*/
 
     public static Place getItem(String _id) {
         for (Place place : placeList()) {

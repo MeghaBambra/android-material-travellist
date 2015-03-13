@@ -1,16 +1,24 @@
 package bhouse.travellist;
 
+import android.animation.ObjectAnimator;
 import android.app.Activity;
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.RippleDrawable;
 import android.os.Bundle;
 import android.support.v7.graphics.Palette;
+import android.transition.Transition;
 import android.util.Log;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 /**
@@ -23,6 +31,7 @@ public class DetailActivity extends Activity {
     private ImageView mImageView;
     private TextView mTitle;
     private LinearLayout mTitleHolder;
+    private ImageButton mAddButton;
 
     private Place mPlace;
 
@@ -36,8 +45,17 @@ public class DetailActivity extends Activity {
         mImageView = (ImageView) findViewById(R.id.imageView);
         mTitle = (TextView) findViewById(R.id.textView);
         mTitleHolder = (LinearLayout) findViewById(R.id.llTextViewHolder);
+        mAddButton = (ImageButton) findViewById(R.id.btn_add);
 
         loadPlace();
+
+        getWindow().getEnterTransition().addListener(new TransitionAdapter() {
+            @Override
+            public void onTransitionEnd(Transition transition) {
+                mAddButton.animate().alpha(1.0f);
+                getWindow().getEnterTransition().removeListener(this);
+            }
+        });
 
         Bitmap photo = BitmapFactory.decodeResource(getResources(), mPlace.getImageResourceId(this));
         colorize(photo);
@@ -54,26 +72,20 @@ public class DetailActivity extends Activity {
     }
 
     private void applyPalette(Palette palette) {
-        getWindow().setBackgroundDrawable(new ColorDrawable(palette.getDarkMutedColor(getResources().getColor(R.color.primary_dark))));
-        mTitleHolder.setBackgroundColor(palette.getVibrantColor(getResources().getColor(R.color.primary_dark)));
 
-        /*TextView titleView = (TextView) findViewById(R.id.title);
-        titleView.setTextColor(palette.getVibrantColor().getRgb());
+        int defaultColor = getResources().getColor(R.color.primary_dark);
 
-        TextView descriptionView = (TextView) findViewById(R.id.description);
-        descriptionView.setTextColor(palette.getLightVibrantColor().getRgb());
-
-        colorRipple(R.id.info, palette.getDarkMutedColor().getRgb(),
-                palette.getDarkVibrantColor().getRgb());
-        colorRipple(R.id.star, palette.getMutedColor().getRgb(),
-                palette.getVibrantColor().getRgb());
-
-        View infoView = findViewById(R.id.information_container);
-        infoView.setBackgroundColor(palette.getLightMutedColor().getRgb());
-
-        AnimatedPathView star = (AnimatedPathView) findViewById(R.id.star_container);
-        star.setFillColor(palette.getVibrantColor().getRgb());
-        star.setStrokeColor(palette.getLightVibrantColor().getRgb());*/
+        getWindow().setBackgroundDrawable(new ColorDrawable(palette.getDarkMutedColor(defaultColor)));
+        mTitleHolder.setBackgroundColor(palette.getLightMutedColor(defaultColor));
+        colorRipple(mAddButton, palette.getVibrantColor(defaultColor),
+                palette.getDarkVibrantColor(defaultColor));
     }
 
+    private void colorRipple(ImageButton id, int bgColor, int tintColor) {
+        View buttonView = id;
+        RippleDrawable ripple = (RippleDrawable) buttonView.getBackground();
+        GradientDrawable rippleBackground = (GradientDrawable) ripple.getDrawable(0);
+        rippleBackground.setColor(bgColor);
+        ripple.setColor(ColorStateList.valueOf(tintColor));
+    }
 }
