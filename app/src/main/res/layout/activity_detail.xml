@@ -9,13 +9,23 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="220dp"
             android:transitionName="tImage"
             android:scaleType="centerCrop"/>
         <LinearLayout
+            android:id="@+id/llEditTextHolder"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#15000000">
+            android:background="#95000000">
+
+            <EditText
+                android:id="@+id/etTodo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:textColor="@android:color/white" />
         </LinearLayout>
     </FrameLayout>
 
@@ -49,9 +59,9 @@
             android:layout_marginTop="30dp"
             android:alpha="0.0"
             android:background="@drawable/btn_background"
-            android:src="@drawable/ic_plus_white"
             android:elevation="@dimen/button_elevation"
-            android:stateListAnimator="@anim/raise" />
+            android:stateListAnimator="@anim/raise"
+            android:contentDescription="@null" />
     </FrameLayout>
 
     <ListView
