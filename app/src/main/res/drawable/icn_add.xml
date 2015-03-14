@@ -4,8 +4,7 @@
     android:height="30dp"
     android:viewportWidth="30"
     android:viewportHeight="30">
-    <group
-        android:name="rotationGroup">
+    <group>
         <path
             android:name="sm_vertical_line"
             android:strokeColor="@android:color/white"

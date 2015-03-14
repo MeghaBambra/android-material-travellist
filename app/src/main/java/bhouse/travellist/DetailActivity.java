@@ -46,6 +46,7 @@ public class DetailActivity extends Activity implements View.OnClickListener {
     private ImageView mImageView;
     private TextView mTitle;
     private LinearLayout mTitleHolder;
+    private Palette mPalette;
     private ImageButton mAddButton;
     private Animatable mAnimatable;
     private LinearLayout mRevealView;
@@ -54,6 +55,7 @@ public class DetailActivity extends Activity implements View.OnClickListener {
     private InputMethodManager mInputManager;
     private Place mPlace;
 
+    int defaultColorForRipple;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +72,7 @@ public class DetailActivity extends Activity implements View.OnClickListener {
         mAddButton = (ImageButton) findViewById(R.id.btn_add);
         mAddButton.setImageResource(R.drawable.icn_morph_reverse);
         mAddButton.setOnClickListener(this);
+        defaultColorForRipple = getResources().getColor(R.color.primary_dark);
 
         mRevealView = (LinearLayout) findViewById(R.id.llEditTextHolder);
         mEditTextTodo = (EditText) findViewById(R.id.etTodo);
@@ -103,18 +106,20 @@ public class DetailActivity extends Activity implements View.OnClickListener {
     }
 
     private void colorize(Bitmap photo) {
-        Palette palette = Palette.generate(photo);
-        applyPalette(palette);
+        mPalette = Palette.generate(photo);
+        applyPalette();
     }
 
-    private void applyPalette(Palette palette) {
-        int defaultColor = getResources().getColor(R.color.primary_dark);
+    private void applyPalette() {
+        getWindow().setBackgroundDrawable(new ColorDrawable(mPalette.getDarkMutedColor(defaultColorForRipple)));
+        mTitleHolder.setBackgroundColor(mPalette.getLightMutedColor(defaultColorForRipple));
+        applyRippleColor(mPalette.getVibrantColor(defaultColorForRipple),
+                mPalette.getDarkVibrantColor(defaultColorForRipple));
+        mRevealView.setBackgroundColor(mPalette.getLightVibrantColor(defaultColorForRipple));
+    }
 
-        getWindow().setBackgroundDrawable(new ColorDrawable(palette.getDarkMutedColor(defaultColor)));
-        mTitleHolder.setBackgroundColor(palette.getLightMutedColor(defaultColor));
-        colorRipple(mAddButton, palette.getVibrantColor(defaultColor),
-                palette.getDarkVibrantColor(defaultColor));
-        mRevealView.setBackgroundColor(palette.getLightVibrantColor(defaultColor));
+    private void applyRippleColor(int bgColor, int tintColor) {
+        colorRipple(mAddButton, bgColor, tintColor);
     }
 
     private void colorRipple(ImageButton id, int bgColor, int tintColor) {
@@ -136,12 +141,15 @@ public class DetailActivity extends Activity implements View.OnClickListener {
                     mAddButton.setImageResource(R.drawable.icn_morp);
                     mAnimatable = (Animatable) (mAddButton).getDrawable();
                     mAnimatable.start();
+                    applyRippleColor(Color.parseColor("#7ABA34"),Color.parseColor("#5B852D"));
                 } else {
                     mInputManager.hideSoftInputFromWindow(mEditTextTodo.getWindowToken(), 0);
                     hideEditText(mRevealView);
                     mAddButton.setImageResource(R.drawable.icn_morph_reverse);
                     mAnimatable = (Animatable) (mAddButton).getDrawable();
                     mAnimatable.start();
+                    applyRippleColor(mPalette.getVibrantColor(defaultColorForRipple),
+                            mPalette.getDarkVibrantColor(defaultColorForRipple));
                 }
         }
     }

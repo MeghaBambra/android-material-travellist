@@ -67,12 +67,14 @@ public class MainActivity extends Activity {
             gridLayoutChangeAnimation(1,0);
             mStaggeredLayoutManager.setSpanCount(2);
             item.setIcon(R.drawable.ic_action_list);
+            item.setTitle("Show as list");
             isListView = false;
             gridLayoutChangeAnimation(0,1);
         } else {
             gridLayoutChangeAnimation(1,0);
             mStaggeredLayoutManager.setSpanCount(1);
             item.setIcon(R.drawable.ic_action_grid);
+            item.setTitle("Show as grid");
             isListView = true;
             gridLayoutChangeAnimation(0,1);
         }

@@ -7,14 +7,14 @@
 
     <group>
         <path
-            android:name="sm_vertical_line_morph"
+            android:name="sm_vertical_line"
             android:strokeColor="@android:color/white"
             android:strokeWidth="3"
-            android:pathData="M0.676892017,3.70640746 L5.84484711,15.9" />
+            android:pathData="M2,10.70640746 L9.84484711,23.9" />
         <path
-            android:name="lg_vertical_line_morph"
+            android:name="lg_vertical_line"
             android:strokeColor="@android:color/white"
             android:strokeWidth="3"
-            android:pathData="M6.10733061,14.5454545 L29.1100607,5" />
+            android:pathData="M9.5,22.5 L31,6.5" />
     </group>
 </vector>
