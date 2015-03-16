@@ -35,6 +35,8 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 /**
  * Created by megha on 15-03-10.
  */
@@ -54,6 +56,8 @@ public class DetailActivity extends Activity implements View.OnClickListener {
     private boolean isEditTextVisible;
     private InputMethodManager mInputManager;
     private Place mPlace;
+    private ArrayList<String> mTodoList;
+    private ArrayAdapter mToDoAdapter;
 
     int defaultColorForRipple;
 
@@ -80,11 +84,12 @@ public class DetailActivity extends Activity implements View.OnClickListener {
         mRevealView.setVisibility(View.INVISIBLE);
         isEditTextVisible = false;
 
+        mTodoList = new ArrayList<>();
 
-        ArrayAdapter adapter = new ArrayAdapter(this,
-                R.layout.row_todo, PlaceData.placeNameArray);
+        mToDoAdapter = new ArrayAdapter(this,
+                R.layout.row_todo, mTodoList);
 
-        mList.setAdapter(adapter);
+        mList.setAdapter(mToDoAdapter);
 
         loadPlace();
 
@@ -103,6 +108,10 @@ public class DetailActivity extends Activity implements View.OnClickListener {
     private void loadPlace() {
        mTitle.setText(mPlace.name);
        mImageView.setImageResource(mPlace.getImageResourceId(this));
+    }
+
+    private void addToDo(String todo) {
+        mTodoList.add(todo);
     }
 
     private void colorize(Bitmap photo) {
@@ -143,6 +152,9 @@ public class DetailActivity extends Activity implements View.OnClickListener {
                     mAnimatable.start();
                     applyRippleColor(Color.parseColor("#7ABA34"),Color.parseColor("#5B852D"));
                 } else {
+                    addToDo(mEditTextTodo.getText().toString());
+                    mToDoAdapter.notifyDataSetChanged();
+
                     mInputManager.hideSoftInputFromWindow(mEditTextTodo.getWindowToken(), 0);
                     hideEditText(mRevealView);
                     mAddButton.setImageResource(R.drawable.icn_morph_reverse);
