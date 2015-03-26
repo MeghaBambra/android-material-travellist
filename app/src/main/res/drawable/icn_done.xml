@@ -4,7 +4,6 @@
     android:height="30dp"
     android:viewportWidth="30"
     android:viewportHeight="30">
-
     <group>
         <path
             android:name="sm_vertical_line"

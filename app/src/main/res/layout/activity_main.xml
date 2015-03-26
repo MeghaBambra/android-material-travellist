@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/list"
         android:layout_width="match_parent"
@@ -13,5 +12,4 @@
         android:listSelector="@android:color/transparent"
         android:background="#f8f8f8"
         tools:context=".CountryActivity"/>
-
 </RelativeLayout>

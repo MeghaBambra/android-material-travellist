@@ -2,24 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="220dp"
             android:transitionName="tImage"
             android:scaleType="centerCrop"/>
-
         <LinearLayout
             android:id="@+id/llEditTextHolder"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#95000000">
-
             <EditText
                 android:id="@+id/etTodo"
                 android:layout_width="match_parent"
@@ -28,11 +24,8 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
                 android:textColor="@android:color/white" />
-
         </LinearLayout>
-
     </FrameLayout>
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -52,7 +45,6 @@
                 android:layout_gravity="center_vertical"
                 android:paddingLeft="10dp"/>
         </LinearLayout>
-
         <ImageButton
             android:id="@+id/btn_add"
             android:layout_width="@dimen/floating_button_size"
@@ -66,7 +58,6 @@
             android:stateListAnimator="@anim/raise"
             android:contentDescription="@null" />
     </FrameLayout>
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -75,11 +66,9 @@
         android:layout_marginLeft="15dp"
         android:textColor="@android:color/white"
         android:text="MY ACTIVITIES" />
-
     <ListView
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:requiresFadingEdge="vertical"/>
-
 </LinearLayout>
