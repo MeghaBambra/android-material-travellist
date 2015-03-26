@@ -67,39 +67,27 @@ public class DetailActivity extends Activity implements View.OnClickListener {
         mPlace = PlaceData.placeList().get(getIntent().getIntExtra(EXTRA_PARAM_ID,0));
 
         mList = (ListView) findViewById(R.id.list);
-
         mImageView = (ImageView) findViewById(R.id.imageView);
         mTitle = (TextView) findViewById(R.id.textView);
         mTitleHolder = (LinearLayout) findViewById(R.id.llTextViewHolder);
         mAddButton = (ImageButton) findViewById(R.id.btn_add);
+        mRevealView = (LinearLayout) findViewById(R.id.llEditTextHolder);
+        mEditTextTodo = (EditText) findViewById(R.id.etTodo);
+
         mAddButton.setImageResource(R.drawable.icn_morph_reverse);
         mAddButton.setOnClickListener(this);
         defaultColorForRipple = getResources().getColor(R.color.primary_dark);
-
-        mRevealView = (LinearLayout) findViewById(R.id.llEditTextHolder);
-        mEditTextTodo = (EditText) findViewById(R.id.etTodo);
         mInputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         mRevealView.setVisibility(View.INVISIBLE);
         isEditTextVisible = false;
 
         mTodoList = new ArrayList<>();
-
         mToDoAdapter = new ArrayAdapter(this, R.layout.row_todo, mTodoList);
-
         mList.setAdapter(mToDoAdapter);
 
         loadPlace();
-
-        getWindow().getEnterTransition().addListener(new TransitionAdapter() {
-            @Override
-            public void onTransitionEnd(Transition transition) {
-                mAddButton.animate().alpha(1.0f);
-                getWindow().getEnterTransition().removeListener(this);
-            }
-        });
-
-        Bitmap photo = BitmapFactory.decodeResource(getResources(), mPlace.getImageResourceId(this));
-        colorize(photo);
+        windowTransition();
+        getPhoto();
     }
 
     private void loadPlace() {
@@ -107,8 +95,23 @@ public class DetailActivity extends Activity implements View.OnClickListener {
        mImageView.setImageResource(mPlace.getImageResourceId(this));
     }
 
+    private void windowTransition() {
+        getWindow().getEnterTransition().addListener(new TransitionAdapter() {
+            @Override
+            public void onTransitionEnd(Transition transition) {
+                mAddButton.animate().alpha(1.0f);
+                getWindow().getEnterTransition().removeListener(this);
+            }
+        });
+    }
+
     private void addToDo(String todo) {
         mTodoList.add(todo);
+    }
+
+    private void getPhoto() {
+        Bitmap photo = BitmapFactory.decodeResource(getResources(), mPlace.getImageResourceId(this));
+        colorize(photo);
     }
 
     private void colorize(Bitmap photo) {
@@ -147,7 +150,7 @@ public class DetailActivity extends Activity implements View.OnClickListener {
                     mAddButton.setImageResource(R.drawable.icn_morp);
                     mAnimatable = (Animatable) (mAddButton).getDrawable();
                     mAnimatable.start();
-                    applyRippleColor(Color.parseColor("#7ABA34"),Color.parseColor("#5B852D"));
+                    applyRippleColor(getResources().getColor(R.color.light_green),getResources().getColor(R.color.dark_green));
                 } else {
                     addToDo(mEditTextTodo.getText().toString());
                     mToDoAdapter.notifyDataSetChanged();

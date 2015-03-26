@@ -25,14 +25,12 @@
                 android:layout_height="match_parent"
                 android:transitionName="tImage"
                 android:scaleType="centerCrop"/>
-            <!--android:tint="@color/photo_tint"-->
 
             <LinearLayout
                 android:id="@+id/mainHolder"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="?android:selectableItemBackground"
-
                 android:orientation="horizontal"/>
 
             <TextView
@@ -45,9 +43,7 @@
                 android:layout_gravity="bottom"
                 android:paddingBottom="8dp"
                 android:paddingLeft="10dp"
-                android:textColor="@android:color/white"
-                android:text="Test"
-                />
+                android:textColor="@android:color/white"/>
 
         </FrameLayout>
 

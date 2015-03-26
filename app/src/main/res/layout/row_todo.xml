@@ -4,5 +4,4 @@
     android:textColor="@android:color/white"
     android:textAppearance="?android:attr/textAppearanceMedium"
     android:padding="15dp">
-
 </TextView>
