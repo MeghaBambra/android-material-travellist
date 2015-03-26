@@ -86,8 +86,7 @@ public class DetailActivity extends Activity implements View.OnClickListener {
 
         mTodoList = new ArrayList<>();
 
-        mToDoAdapter = new ArrayAdapter(this,
-                R.layout.row_todo, mTodoList);
+        mToDoAdapter = new ArrayAdapter(this, R.layout.row_todo, mTodoList);
 
         mList.setAdapter(mToDoAdapter);
 
