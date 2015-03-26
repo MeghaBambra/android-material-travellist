@@ -12,7 +12,6 @@ public class PlaceData {
 
     public static ArrayList<Place> placeList() {
         ArrayList<Place> list = new ArrayList<>();
-
         for (int i=0; i<placeNameArray.length; i++) {
             Place place = new Place();
             place.name = placeNameArray[i];
@@ -22,24 +21,8 @@ public class PlaceData {
             }
             list.add(place);
         }
-
         return(list);
     }
-
-/*    public void addToDo(String _placeId, Todo _todo) {
-        Place item = getItem(_placeId);
-        item.todo.add(_todo);
-    }
-
-    public void removeToDo(String _placeId, Todo _todo) {
-        Place item = getItem(_placeId);
-
-        for (Todo t : item.todo) {
-            if (t.toDoId.equals(_todo.toDoId)) {
-                item.todo.remove(_todo);
-            }
-        }
-    }*/
 
     public static Place getItem(String _id) {
         for (Place place : placeList()) {

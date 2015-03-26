@@ -43,7 +43,6 @@ import java.util.ArrayList;
 public class DetailActivity extends Activity implements View.OnClickListener {
 
     public static final String EXTRA_PARAM_ID = "place_id";
-
     private ListView mList;
     private ImageView mImageView;
     private TextView mTitle;
@@ -58,7 +57,6 @@ public class DetailActivity extends Activity implements View.OnClickListener {
     private Place mPlace;
     private ArrayList<String> mTodoList;
     private ArrayAdapter mToDoAdapter;
-
     int defaultColorForRipple;
 
     @Override
@@ -166,36 +164,20 @@ public class DetailActivity extends Activity implements View.OnClickListener {
     }
 
     private void revealEditText(LinearLayout view) {
-        // get the center for the clipping circle
         int cx = view.getRight()-30;
         int cy = view.getBottom()-60;
-
-        // get the final radius for the clipping circle
         int finalRadius = Math.max(view.getWidth(), view.getHeight());
-
-        // create the animator for this view (the start radius is zero)
         Animator anim = ViewAnimationUtils.createCircularReveal(view, cx, cy, 0, finalRadius);
-
-        // make the view visible and start the animation
         view.setVisibility(View.VISIBLE);
         isEditTextVisible = true;
         anim.start();
     }
 
     private void hideEditText(final LinearLayout view) {
-
-        // get the center for the clipping circle
         int cx = view.getRight()-30;
         int cy = view.getBottom()-60;
-
-        // get the initial radius for the clipping circle
         int initialRadius = view.getWidth();
-
-        // create the animation (the final radius is zero)
-        Animator anim =
-                ViewAnimationUtils.createCircularReveal(view, cx, cy, initialRadius, 0);
-
-        // make the view invisible when the animation is done
+        Animator anim = ViewAnimationUtils.createCircularReveal(view, cx, cy, initialRadius, 0);
         anim.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
@@ -203,8 +185,6 @@ public class DetailActivity extends Activity implements View.OnClickListener {
                 view.setVisibility(View.INVISIBLE);
             }
         });
-
-        // start the animation
         isEditTextVisible = false;
         anim.start();
     }
