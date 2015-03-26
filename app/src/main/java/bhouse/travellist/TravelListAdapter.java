@@ -41,8 +41,6 @@ public class TravelListAdapter extends RecyclerView.Adapter<TravelListAdapter.Vi
         final Place place = new PlaceData().placeList().get(position);
         holder.placeName.setText(place.name);
         Picasso.with(mContext).load(place.getImageResourceId(mContext)).into(holder.placeImage);
-
-        //This checks if layout is staggered grid (as opposed to LinearLayout) and sets certain views to full span based on a condition
         final ViewGroup.LayoutParams lp = holder.itemView.getLayoutParams();
         if (lp instanceof StaggeredGridLayoutManager.LayoutParams) {
             StaggeredGridLayoutManager.LayoutParams sglp = (StaggeredGridLayoutManager.LayoutParams) lp;
@@ -58,11 +56,9 @@ public class TravelListAdapter extends RecyclerView.Adapter<TravelListAdapter.Vi
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
         public LinearLayout placeHolder;
         public TextView placeName;
         public ImageView placeImage;
-
         public Context context;
 
         public ViewHolder(View itemView, Context _context) {
@@ -71,7 +67,6 @@ public class TravelListAdapter extends RecyclerView.Adapter<TravelListAdapter.Vi
             placeHolder = (LinearLayout) itemView.findViewById(R.id.mainHolder);
             placeName = (TextView) itemView.findViewById(R.id.placeName);
             placeImage = (ImageView) itemView.findViewById(R.id.placeImage);
-
             placeHolder.setOnClickListener(this);
         }
 
@@ -79,7 +74,6 @@ public class TravelListAdapter extends RecyclerView.Adapter<TravelListAdapter.Vi
         public void onClick(View v) {
             Intent intent = new Intent(context, DetailActivity.class);
             intent.putExtra(DetailActivity.EXTRA_PARAM_ID, getPosition());
-
             ActivityOptionsCompat activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(
                     (Activity)context,
                     new Pair<View, String>(placeImage,"tImage"),

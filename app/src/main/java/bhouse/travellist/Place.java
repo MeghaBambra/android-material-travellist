@@ -14,15 +14,8 @@ public class Place {
     public String imageName;
     public boolean isFav;
 
-    public int getImageResourceId(Context context)
-    {
-        try {
-            return context.getResources().getIdentifier(this.imageName, "drawable", context.getPackageName());
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return -1;
-        }
+    public int getImageResourceId(Context context) {
+        return context.getResources().getIdentifier(this.imageName, "drawable", context.getPackageName());
     }
 
 }
