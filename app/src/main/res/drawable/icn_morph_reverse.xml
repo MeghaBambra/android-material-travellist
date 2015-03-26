@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:drawable="@drawable/icn_add">
+
     <target
         android:name="sm_vertical_line"
         android:animation="@anim/path_morph_reverse" />
@@ -10,4 +11,5 @@
     <target
         android:animation="@anim/fade_in"
         android:name="horizontal_line"/>
+
 </animated-vector>

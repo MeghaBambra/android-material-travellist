@@ -4,6 +4,7 @@
     android:height="30dp"
     android:viewportWidth="30"
     android:viewportHeight="30">
+
     <group>
         <path
             android:name="sm_vertical_line"
@@ -16,4 +17,5 @@
             android:strokeWidth="3"
             android:pathData="M9.5,22.5 L31,6.5" />
     </group>
+
 </vector>
