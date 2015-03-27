@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
+
     <item
         android:state_enabled="true"
         android:state_pressed="true">
@@ -10,6 +11,7 @@
             android:valueTo="@dimen/button_press_elevation"
             android:valueType="floatType" />
     </item>
+
     <item>
         <objectAnimator
             android:duration="@android:integer/config_shortAnimTime"
@@ -18,4 +20,5 @@
             android:valueTo="@dimen/button_elevation"
             android:valueType="floatType" />
     </item>
+
 </selector>

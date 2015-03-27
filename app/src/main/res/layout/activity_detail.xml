@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="220dp"
-            android:transitionName="tImage"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop"
+            android:transitionName="tImage" />
+
         <LinearLayout
             android:id="@+id/llEditTextHolder"
             android:layout_width="match_parent"
@@ -23,10 +26,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:textColor="@android:color/white" />
+
         </LinearLayout>
+
     </FrameLayout>
 
     <FrameLayout
@@ -38,16 +43,18 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@color/primary_dark">
+
             <TextView
+                android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:transitionName="tName"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:text="Medium Text"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@android:color/white"
-                android:text="Medium Text"
-                android:id="@+id/textView"
-                android:layout_gravity="center_vertical"
-                android:paddingLeft="10dp"/>
+                android:transitionName="tName" />
+
         </LinearLayout>
 
         <ImageButton
@@ -59,25 +66,25 @@
             android:layout_marginTop="30dp"
             android:alpha="0.0"
             android:background="@drawable/btn_background"
+            android:contentDescription="@null"
             android:elevation="@dimen/button_elevation"
-            android:stateListAnimator="@anim/raise"
-            android:contentDescription="@null" />
+            android:stateListAnimator="@anim/raise" />
+
     </FrameLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_marginTop="-10dp"
         android:layout_marginLeft="15dp"
-        android:textColor="@android:color/white"
-        android:text="MY ACTIVITIES" />
+        android:layout_marginTop="-10dp"
+        android:text="MY ACTIVITIES"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@android:color/white" />
 
     <ListView
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:requiresFadingEdge="vertical">
-    </ListView>
+        android:requiresFadingEdge="vertical" />
 
 </LinearLayout>
