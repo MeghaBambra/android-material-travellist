@@ -15,7 +15,7 @@
 
     <FrameLayout
       android:layout_width="match_parent"
-      android:layout_height="170dp">
+      android:layout_height="200dp">
 
       <ImageView
         android:id="@+id/placeImage"
@@ -31,17 +31,25 @@
         android:background="?android:selectableItemBackground"
         android:orientation="horizontal" />
 
-      <TextView
-        android:id="@+id/placeName"
+      <LinearLayout
+        android:id="@+id/placeNameHolder"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:layout_gravity="bottom"
-        android:gravity="left"
-        android:paddingBottom="8dp"
-        android:paddingLeft="10dp"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@android:color/white"
-        android:transitionName="tName" />
+        android:orientation="horizontal"
+        android:transitionName="tNameHolder">
+
+        <TextView
+          android:id="@+id/placeName"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center_vertical"
+          android:gravity="left"
+          android:paddingLeft="10dp"
+          android:textAppearance="?android:attr/textAppearanceLarge"
+          android:textColor="@android:color/white" />
+
+      </LinearLayout>
 
     </FrameLayout>
 

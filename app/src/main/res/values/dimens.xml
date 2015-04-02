@@ -5,5 +5,5 @@
   <dimen name="button_elevation">1dp</dimen>
   <dimen name="button_press_elevation">18dp</dimen>
   <dimen name="card_elevation">1dp</dimen>
-  <dimen name="card_corner_radius">4dp</dimen>
+  <dimen name="card_corner_radius">0dp</dimen>
 </resources>

@@ -44,8 +44,8 @@ public class TravelListAdapter extends RecyclerView.Adapter<TravelListAdapter.Vi
 
     Palette.generateAsync(photo, new Palette.PaletteAsyncListener() {
       public void onGenerated(Palette palette) {
-        int mutedLight = palette.getDarkVibrantColor(mContext.getResources().getColor(android.R.color.black));
-        holder.placeName.setTextColor(mutedLight);
+        int mutedLight = palette.getMutedColor(mContext.getResources().getColor(android.R.color.black));
+        holder.placeNameHolder.setBackgroundColor(mutedLight);
       }
     });
 
@@ -64,6 +64,7 @@ public class TravelListAdapter extends RecyclerView.Adapter<TravelListAdapter.Vi
 
   public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     public LinearLayout placeHolder;
+    public LinearLayout placeNameHolder;
     public TextView placeName;
     public ImageView placeImage;
     public Context context;
@@ -73,6 +74,7 @@ public class TravelListAdapter extends RecyclerView.Adapter<TravelListAdapter.Vi
       context = _context;
       placeHolder = (LinearLayout) itemView.findViewById(R.id.mainHolder);
       placeName = (TextView) itemView.findViewById(R.id.placeName);
+      placeNameHolder = (LinearLayout) itemView.findViewById(R.id.placeNameHolder);
       placeImage = (ImageView) itemView.findViewById(R.id.placeImage);
       placeHolder.setOnClickListener(this);
     }

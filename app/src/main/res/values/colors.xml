@@ -5,4 +5,6 @@
   <color name="accent">#6C7F91</color>
   <color name="light_green">#7ABA34</color>
   <color name="dark_green">#5B852D</color>
+
+  <color name="photo_tint">#7f101010</color>
 </resources>

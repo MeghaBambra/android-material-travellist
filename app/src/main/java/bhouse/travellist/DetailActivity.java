@@ -18,6 +18,8 @@ import android.transition.Transition;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.Window;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -106,13 +108,13 @@ public class DetailActivity extends Activity implements View.OnClickListener {
     return fade;
   }
 
-  private void addToDo(String todo) {
-    mTodoList.add(todo);
-  }
-
   private void getPhoto() {
     Bitmap photo = BitmapFactory.decodeResource(getResources(), mPlace.getImageResourceId(this));
     colorize(photo);
+  }
+
+  private void addToDo(String todo) {
+    mTodoList.add(todo);
   }
 
   private void colorize(Bitmap photo) {
@@ -122,7 +124,7 @@ public class DetailActivity extends Activity implements View.OnClickListener {
 
   private void applyPalette() {
     getWindow().setBackgroundDrawable(new ColorDrawable(mPalette.getDarkMutedColor(defaultColorForRipple)));
-    mTitleHolder.setBackgroundColor(mPalette.getLightMutedColor(defaultColorForRipple));
+    mTitleHolder.setBackgroundColor(mPalette.getMutedColor(defaultColorForRipple));
     applyRippleColor(mPalette.getVibrantColor(defaultColorForRipple),
             mPalette.getDarkVibrantColor(defaultColorForRipple));
     mRevealView.setBackgroundColor(mPalette.getLightVibrantColor(defaultColorForRipple));
@@ -155,7 +157,6 @@ public class DetailActivity extends Activity implements View.OnClickListener {
         } else {
           addToDo(mEditTextTodo.getText().toString());
           mToDoAdapter.notifyDataSetChanged();
-
           mInputManager.hideSoftInputFromWindow(mEditTextTodo.getWindowToken(), 0);
           hideEditText(mRevealView);
           mAddButton.setImageResource(R.drawable.icn_morph_reverse);
@@ -191,5 +192,30 @@ public class DetailActivity extends Activity implements View.OnClickListener {
     });
     isEditTextVisible = false;
     anim.start();
+  }
+
+  @Override
+  public void onBackPressed() {
+    AlphaAnimation alphaAnimation = new AlphaAnimation(1.0f, 0.0f);
+    alphaAnimation.setDuration(100);
+    mAddButton.startAnimation(alphaAnimation);
+    alphaAnimation.setAnimationListener(new Animation.AnimationListener() {
+      @Override
+      public void onAnimationStart(Animation animation) {
+
+      }
+
+      @Override
+      public void onAnimationEnd(Animation animation) {
+        mAddButton.setVisibility(View.GONE);
+        finishAfterTransition();
+      }
+
+      @Override
+      public void onAnimationRepeat(Animation animation) {
+
+      }
+    });
+
   }
 }

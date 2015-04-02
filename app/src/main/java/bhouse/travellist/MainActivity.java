@@ -1,15 +1,11 @@
 package bhouse.travellist;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -19,7 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 import android.widget.Toolbar;
 
 
@@ -32,13 +28,6 @@ public class MainActivity extends Activity {
   private TravelListAdapter mAdapter;
   private boolean isListView;
   private Menu menu;
-
-  //Transition Items
-  Intent transitionIntent;
-  CardView placeCard;
-  TextView placeName;
-  ImageView placeImage;
-  ValueAnimator anim;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -62,53 +51,24 @@ public class MainActivity extends Activity {
     mAdapter.setOnItemClickListener(new TravelListAdapter.OnItemClickListener() {
       @Override
       public void onItemClick(View v, int position) {
-        transitionIntent = new Intent(MainActivity.this, DetailActivity.class);
+
+        Intent transitionIntent = new Intent(MainActivity.this, DetailActivity.class);
         transitionIntent.putExtra(DetailActivity.EXTRA_PARAM_ID, position);
-        placeName = (TextView) v.findViewById(R.id.placeName);
-        placeImage = (ImageView) v.findViewById(R.id.placeImage);
-        placeCard = (CardView) v.findViewById(R.id.placeCard);
-        animateCardRadiusChange(10, 0, 150);
-        startTransition();
+        ImageView placeImage = (ImageView) v.findViewById(R.id.placeImage);
+        LinearLayout placeNameHolder = (LinearLayout) v.findViewById(R.id.placeNameHolder);
+
+        View navigationBar = findViewById(android.R.id.navigationBarBackground);
+
+        Pair<View, String> imagePair = Pair.create((View) placeImage, "tImage");
+        Pair<View, String> holderPair = Pair.create((View) placeNameHolder, "tNameHolder");
+        Pair<View, String> navPair = Pair.create(navigationBar, Window.NAVIGATION_BAR_BACKGROUND_TRANSITION_NAME);
+
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, imagePair, holderPair, navPair);
+        ActivityCompat.startActivity(MainActivity.this, transitionIntent, options.toBundle());
       }
     });
 
     isListView = true;
-  }
-
-  @Override
-  public void onResume() {
-    super.onResume();
-    if (placeCard != null) {
-      animateCardRadiusChange(0, 10, 150);
-    }
-  }
-
-  private void animateCardRadiusChange(int start, int end, int duration) {
-    anim = ValueAnimator.ofInt(start, end);
-    anim.setDuration(duration);
-    anim.start();
-    anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-      public void onAnimationUpdate(ValueAnimator animation) {
-        int value = (int) animation.getAnimatedValue();
-        placeCard.setRadius(value);
-      }
-    });
-  }
-
-  private void startTransition() {
-    anim.addListener(new AnimatorListenerAdapter() {
-      public void onAnimationEnd(Animator animation) {
-        View navigationBar = findViewById(android.R.id.navigationBarBackground);
-
-        Pair<View, String> imagePair = Pair.create((View) placeImage, "tImage");
-        Pair<View, String> titlePair = Pair.create((View) placeName, "tName");
-        Pair<View, String> navPair = Pair.create(navigationBar, Window.NAVIGATION_BAR_BACKGROUND_TRANSITION_NAME);
-
-        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, imagePair,
-                titlePair, navPair);
-        ActivityCompat.startActivity(MainActivity.this, transitionIntent, options.toBundle());
-      }
-    });
   }
 
   private void setUpActionBar() {

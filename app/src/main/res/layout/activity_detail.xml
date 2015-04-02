@@ -34,6 +34,7 @@
 
   </FrameLayout>
 
+
   <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -42,7 +43,8 @@
       android:id="@+id/llTextViewHolder"
       android:layout_width="match_parent"
       android:layout_height="60dp"
-      android:background="@color/primary_dark">
+      android:background="@color/primary_dark"
+      android:transitionName="tNameHolder">
 
       <TextView
         android:id="@+id/textView"
@@ -50,10 +52,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:paddingLeft="10dp"
-        android:text="Medium Text"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@android:color/white"
-        android:transitionName="tName" />
+        android:textColor="@android:color/white" />
 
     </LinearLayout>
 
@@ -63,7 +63,7 @@
       android:layout_height="@dimen/floating_button_size"
       android:layout_gravity="end"
       android:layout_marginEnd="10dp"
-      android:layout_marginTop="30dp"
+      android:layout_marginTop="28dp"
       android:alpha="0.0"
       android:background="@drawable/btn_background"
       android:contentDescription="@null"
