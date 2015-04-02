@@ -17,12 +17,18 @@ import android.graphics.drawable.RippleDrawable;
 import android.opengl.Visibility;
 import android.os.Bundle;
 import android.support.v7.graphics.Palette;
+import android.transition.ChangeBounds;
+import android.transition.ChangeClipBounds;
+import android.transition.ChangeImageTransform;
+import android.transition.Fade;
 import android.transition.Transition;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.view.Window;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
@@ -43,6 +49,7 @@ import java.util.ArrayList;
 public class DetailActivity extends Activity implements View.OnClickListener {
 
     public static final String EXTRA_PARAM_ID = "place_id";
+    public static final String NAV_BAR_VIEW_NAME = Window.NAVIGATION_BAR_BACKGROUND_TRANSITION_NAME;
     private ListView mList;
     private ImageView mImageView;
     private TextView mTitle;
@@ -88,6 +95,7 @@ public class DetailActivity extends Activity implements View.OnClickListener {
         loadPlace();
         windowTransition();
         getPhoto();
+
     }
 
     private void loadPlace() {

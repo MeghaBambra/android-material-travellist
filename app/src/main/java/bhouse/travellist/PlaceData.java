@@ -8,7 +8,7 @@ import java.util.UUID;
  */
 public class PlaceData {
 
-    public static String[] placeNameArray = {"Bora Bora", "Canada", "Dubai", "Hong Kong", "Iceland", "India", "Kenya", "London", "Switzerland", "Sydney"};
+    public static String[] placeNameArray = {"Bora Bora", "Canada", "Dubai", "Hong Kong", "Iceland", "India", "Kenya", "London", "Switzerland", "Sydney","Blank"};
 
     public static ArrayList<Place> placeList() {
         ArrayList<Place> list = new ArrayList<>();
@@ -16,8 +16,13 @@ public class PlaceData {
             Place place = new Place();
             place.name = placeNameArray[i];
             place.imageName = placeNameArray[i].replaceAll("\\s+","").toLowerCase();
-            if (i==2 || i==5) {
+            if (i==2 || i==5 || i==placeNameArray.length-1) {
                 place.isFav = true;
+            }
+            if (i!=placeNameArray.length-1) {
+                place.type = 0;
+            } else {
+                place.type = 1;
             }
             list.add(place);
         }
