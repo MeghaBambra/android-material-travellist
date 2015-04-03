@@ -28,6 +28,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import java.util.ArrayList;
 
@@ -38,6 +39,7 @@ public class DetailActivity extends Activity implements View.OnClickListener {
 
   public static final String EXTRA_PARAM_ID = "place_id";
   public static final String NAV_BAR_VIEW_NAME = Window.NAVIGATION_BAR_BACKGROUND_TRANSITION_NAME;
+  private Toolbar toolbar;
   private ListView mList;
   private ImageView mImageView;
   private TextView mTitle;
@@ -61,6 +63,7 @@ public class DetailActivity extends Activity implements View.OnClickListener {
 
     mPlace = PlaceData.placeList().get(getIntent().getIntExtra(EXTRA_PARAM_ID, 0));
 
+    toolbar = (Toolbar) findViewById(R.id.toolbar);
     mList = (ListView) findViewById(R.id.list);
     mImageView = (ImageView) findViewById(R.id.imageView);
     mTitle = (TextView) findViewById(R.id.textView);
@@ -105,6 +108,7 @@ public class DetailActivity extends Activity implements View.OnClickListener {
   public static Transition makeEnterTransition() {
     Transition fade = new Fade();
     fade.excludeTarget(android.R.id.navigationBarBackground, true);
+    fade.excludeTarget(android.R.id.statusBarBackground, true);
     return fade;
   }
 

@@ -9,11 +9,14 @@ import android.support.v4.util.Pair;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.transition.Explode;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toolbar;
@@ -58,12 +61,15 @@ public class MainActivity extends Activity {
         LinearLayout placeNameHolder = (LinearLayout) v.findViewById(R.id.placeNameHolder);
 
         View navigationBar = findViewById(android.R.id.navigationBarBackground);
+        View statusBar = findViewById(android.R.id.statusBarBackground);
 
         Pair<View, String> imagePair = Pair.create((View) placeImage, "tImage");
         Pair<View, String> holderPair = Pair.create((View) placeNameHolder, "tNameHolder");
         Pair<View, String> navPair = Pair.create(navigationBar, Window.NAVIGATION_BAR_BACKGROUND_TRANSITION_NAME);
+        Pair<View, String> statusPair = Pair.create(statusBar, Window.STATUS_BAR_BACKGROUND_TRANSITION_NAME);
+        Pair<View, String> toolbarPair = Pair.create((View)toolbar, "tActionBar");
 
-        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, imagePair, holderPair, navPair);
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, imagePair, holderPair, navPair, statusPair, toolbarPair);
         ActivityCompat.startActivity(MainActivity.this, transitionIntent, options.toBundle());
       }
     });

@@ -32,8 +32,11 @@
 
     </LinearLayout>
 
-  </FrameLayout>
+    <include
+      android:id="@+id/toolbar"
+      layout="@layout/toolbar_detail"/>
 
+  </FrameLayout>
 
   <FrameLayout
     android:layout_width="match_parent"
