@@ -1,90 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:orientation="vertical">
+
+  <FrameLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="wrap_content">
 
-    <FrameLayout
+    <ImageView
+      android:id="@+id/placeImage"
+      android:layout_width="match_parent"
+      android:layout_height="220dp"
+      android:scaleType="centerCrop"
+      android:transitionName="tImage" />
+
+    <LinearLayout
+      android:id="@+id/llEditTextHolder"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="#95000000">
+
+      <EditText
+        android:id="@+id/etTodo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="220dp"
-            android:scaleType="centerCrop"
-            android:transitionName="tImage" />
-
-        <LinearLayout
-            android:id="@+id/llEditTextHolder"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#95000000">
-
-            <EditText
-                android:id="@+id/etTodo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:textColor="@android:color/white" />
-
-        </LinearLayout>
-
-    </FrameLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:id="@+id/llTextViewHolder"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="@color/primary_dark">
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:paddingLeft="10dp"
-                android:text="Medium Text"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@android:color/white"
-                android:transitionName="tName" />
-
-        </LinearLayout>
-
-        <ImageButton
-            android:id="@+id/btn_add"
-            android:layout_width="@dimen/floating_button_size"
-            android:layout_height="@dimen/floating_button_size"
-            android:layout_gravity="end"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="30dp"
-            android:alpha="0.0"
-            android:background="@drawable/btn_background"
-            android:contentDescription="@null"
-            android:elevation="@dimen/button_elevation"
-            android:stateListAnimator="@anim/raise" />
-
-    </FrameLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="-10dp"
-        android:text="MY ACTIVITIES"
-        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_gravity="center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:textColor="@android:color/white" />
 
-    <ListView
-        android:id="@+id/list"
-        android:layout_width="match_parent"
+    </LinearLayout>
+
+    <include
+      android:id="@+id/toolbar"
+      layout="@layout/toolbar_detail"/>
+
+  </FrameLayout>
+
+  <FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+      android:id="@+id/placeNameHolder"
+      android:layout_width="match_parent"
+      android:layout_height="60dp"
+      android:background="@color/primary_dark"
+      android:transitionName="tNameHolder">
+
+      <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:requiresFadingEdge="vertical" />
+        android:layout_gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@android:color/white" />
+
+    </LinearLayout>
+
+    <ImageButton
+      android:id="@+id/btn_add"
+      android:layout_width="@dimen/floating_button_size"
+      android:layout_height="@dimen/floating_button_size"
+      android:layout_gravity="end"
+      android:layout_marginEnd="10dp"
+      android:layout_marginTop="28dp"
+      android:alpha="0.0"
+      android:background="@drawable/btn_background"
+      android:contentDescription="@null"
+      android:elevation="@dimen/button_elevation"
+      android:stateListAnimator="@anim/raise" />
+
+  </FrameLayout>
+
+  <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="15dp"
+    android:layout_marginTop="-10dp"
+    android:text="MY ACTIVITIES"
+    android:textAppearance="?android:attr/textAppearanceSmall"
+    android:textColor="@android:color/white" />
+
+  <ListView
+    android:id="@+id/list"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:requiresFadingEdge="vertical" />
 
 </LinearLayout>

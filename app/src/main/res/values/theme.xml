@@ -1,25 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="AppTheme" parent="android:ThemeOverlay.Material.Light">
-        <item name="android:colorPrimary">@color/primary</item>
-        <item name="android:colorPrimaryDark">@color/primary_dark</item>
-        <item name="android:colorAccent">@color/accent</item>
-        <item name="android:navigationBarColor">?android:colorPrimaryDark</item>
-    </style>
-
-    <style name="DetailTheme" parent="AppTheme">
-        <item name="android:actionBarStyle">@style/DetailActionBar</item>
-        <item name="android:windowActionBarOverlay">false</item>
-        <item name="android:windowContentTransitions">true</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:windowTranslucentNavigation">true</item>
-    </style>
-
-    <style name="DetailActionBar" parent="android:Widget.Material.Light.ActionBar">
-        <item name="android:background">@null</item>
-        <item name="android:displayOptions">disableHome</item>
-    </style>
+  <style name="AppTheme" parent="android:ThemeOverlay.Material.Light">
+    <item name="android:colorPrimary">@color/primary</item>
+    <item name="android:colorPrimaryDark">@color/primary_dark</item>
+    <item name="android:colorAccent">@color/accent</item>
+    <item name="android:navigationBarColor">@color/primary_dark</item>
+    <!--<item name="android:windowActionBar">false</item>
+    <item name="android:windowNoTitle">true</item>-->
+    <item name="android:displayOptions">disableHome</item>
+  </style>
 
 </resources>
