@@ -6,8 +6,8 @@
     <item name="android:colorPrimaryDark">@color/primary_dark</item>
     <item name="android:colorAccent">@color/accent</item>
     <item name="android:navigationBarColor">@color/primary_dark</item>
-    <!--<item name="android:windowActionBar">false</item>
-    <item name="android:windowNoTitle">true</item>-->
+    <item name="android:windowActionBar">false</item>
+    <item name="android:windowNoTitle">true</item>
     <item name="android:displayOptions">disableHome</item>
   </style>
 
