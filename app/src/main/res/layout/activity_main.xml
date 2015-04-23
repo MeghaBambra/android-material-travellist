@@ -15,7 +15,6 @@
     android:layout_height="match_parent"
     android:background="#f8f8f8"
     android:divider="@null"
-    android:listSelector="@android:color/transparent"
-    tools:context=".CountryActivity" />
+    android:listSelector="@android:color/transparent"/>
 
 </LinearLayout>

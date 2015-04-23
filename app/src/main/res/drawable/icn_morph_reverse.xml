@@ -3,8 +3,8 @@
   android:drawable="@drawable/icn_add">
 
   <target
-    android:name="sm_vertical_line"
-    android:animation="@anim/path_morph_reverse" />
+    android:animation="@anim/path_morph_reverse"
+    android:name="sm_vertical_line"/>
   <target
     android:animation="@anim/path_morph_lg_reverse"
     android:name="lg_vertical_line" />

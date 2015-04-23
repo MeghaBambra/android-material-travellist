@@ -15,6 +15,8 @@ import android.os.Bundle;
 import android.support.v7.graphics.Palette;
 import android.transition.Fade;
 import android.transition.Transition;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.Window;
@@ -39,7 +41,6 @@ public class DetailActivity extends Activity implements View.OnClickListener {
 
   public static final String EXTRA_PARAM_ID = "place_id";
   public static final String NAV_BAR_VIEW_NAME = Window.NAVIGATION_BAR_BACKGROUND_TRANSITION_NAME;
-  private Toolbar toolbar;
   private ListView mList;
   private ImageView mImageView;
   private TextView mTitle;
@@ -63,11 +64,10 @@ public class DetailActivity extends Activity implements View.OnClickListener {
 
     mPlace = PlaceData.placeList().get(getIntent().getIntExtra(EXTRA_PARAM_ID, 0));
 
-    toolbar = (Toolbar) findViewById(R.id.toolbar);
     mList = (ListView) findViewById(R.id.list);
-    mImageView = (ImageView) findViewById(R.id.imageView);
+    mImageView = (ImageView) findViewById(R.id.placeImage);
     mTitle = (TextView) findViewById(R.id.textView);
-    mTitleHolder = (LinearLayout) findViewById(R.id.llTextViewHolder);
+    mTitleHolder = (LinearLayout) findViewById(R.id.placeNameHolder);
     mAddButton = (ImageButton) findViewById(R.id.btn_add);
     mRevealView = (LinearLayout) findViewById(R.id.llEditTextHolder);
     mEditTextTodo = (EditText) findViewById(R.id.etTodo);
@@ -112,13 +112,13 @@ public class DetailActivity extends Activity implements View.OnClickListener {
     return fade;
   }
 
+  private void addToDo(String todo) {
+    mTodoList.add(todo);
+  }
+
   private void getPhoto() {
     Bitmap photo = BitmapFactory.decodeResource(getResources(), mPlace.getImageResourceId(this));
     colorize(photo);
-  }
-
-  private void addToDo(String todo) {
-    mTodoList.add(todo);
   }
 
   private void colorize(Bitmap photo) {
@@ -220,6 +220,5 @@ public class DetailActivity extends Activity implements View.OnClickListener {
 
       }
     });
-
   }
 }

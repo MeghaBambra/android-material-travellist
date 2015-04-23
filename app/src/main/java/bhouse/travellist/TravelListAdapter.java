@@ -30,7 +30,7 @@ public class TravelListAdapter extends RecyclerView.Adapter<TravelListAdapter.Vi
   @Override
   public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
     View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_places, parent, false);
-    return new ViewHolder(view, mContext);
+    return new ViewHolder(view);
   }
 
   @Override
@@ -67,11 +67,9 @@ public class TravelListAdapter extends RecyclerView.Adapter<TravelListAdapter.Vi
     public LinearLayout placeNameHolder;
     public TextView placeName;
     public ImageView placeImage;
-    public Context context;
 
-    public ViewHolder(View itemView, Context _context) {
+    public ViewHolder(View itemView) {
       super(itemView);
-      context = _context;
       placeHolder = (LinearLayout) itemView.findViewById(R.id.mainHolder);
       placeName = (TextView) itemView.findViewById(R.id.placeName);
       placeNameHolder = (LinearLayout) itemView.findViewById(R.id.placeNameHolder);
@@ -88,7 +86,7 @@ public class TravelListAdapter extends RecyclerView.Adapter<TravelListAdapter.Vi
   }
 
   public interface OnItemClickListener {
-    public void onItemClick(View view, int position);
+    void onItemClick(View view, int position);
   }
 
   public void setOnItemClickListener(final OnItemClickListener mItemClickListener) {
