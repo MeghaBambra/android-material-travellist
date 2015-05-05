@@ -70,8 +70,7 @@
       android:alpha="0.0"
       android:background="@drawable/btn_background"
       android:contentDescription="@null"
-      android:elevation="@dimen/button_elevation"
-      android:stateListAnimator="@anim/raise" />
+      android:elevation="@dimen/button_elevation"/>
 
   </FrameLayout>
 
