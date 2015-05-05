@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,13 +47,6 @@ public class TravelListAdapter extends RecyclerView.Adapter<TravelListAdapter.Vi
         holder.placeNameHolder.setBackgroundColor(mutedLight);
       }
     });
-
-    final ViewGroup.LayoutParams lp = holder.itemView.getLayoutParams();
-    if (lp instanceof StaggeredGridLayoutManager.LayoutParams) {
-      StaggeredGridLayoutManager.LayoutParams sglp = (StaggeredGridLayoutManager.LayoutParams) lp;
-      sglp.setFullSpan(place.isFav);
-      holder.itemView.setLayoutParams(sglp);
-    }
   }
 
   @Override
