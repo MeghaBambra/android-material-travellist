@@ -69,11 +69,14 @@ public class MainActivity extends Activity {
 
           Pair<View, String> imagePair = Pair.create((View) placeImage, "tImage");
           Pair<View, String> holderPair = Pair.create((View) placeNameHolder, "tNameHolder");
-          Pair<View, String> navPair = Pair.create(navigationBar, Window.NAVIGATION_BAR_BACKGROUND_TRANSITION_NAME);
+          // This code generate app crush when onClick.
+          // TODO: Find out why.
+          //Pair<View, String> navPair = Pair.create(navigationBar, Window.NAVIGATION_BAR_BACKGROUND_TRANSITION_NAME);
           Pair<View, String> statusPair = Pair.create(statusBar, Window.STATUS_BAR_BACKGROUND_TRANSITION_NAME);
           Pair<View, String> toolbarPair = Pair.create((View)toolbar, "tActionBar");
 
-          ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, imagePair, holderPair, navPair, statusPair, toolbarPair);
+          //ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, imagePair, holderPair, navPair, statusPair, toolbarPair);
+          ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, imagePair, holderPair, statusPair,toolbarPair);
           ActivityCompat.startActivity(MainActivity.this, transitionIntent, options.toBundle());
       }
   };
